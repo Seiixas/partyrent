@@ -3,14 +3,18 @@ package br.ifnmg.edu.partyrent.modules.users.services;
 import br.ifnmg.edu.partyrent.modules.users.dtos.CreateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.dtos.UpdateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
+import br.ifnmg.edu.partyrent.modules.users.exceptions.PasswordNotValidException;
 import br.ifnmg.edu.partyrent.modules.users.exceptions.UserAlreadyExistsException;
 import br.ifnmg.edu.partyrent.modules.users.exceptions.UserNotFoundException;
 import br.ifnmg.edu.partyrent.modules.users.repositories.UsersRepository;
 
+import br.ifnmg.edu.partyrent.shared.utils.Password;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,37 +22,46 @@ import java.util.UUID;
 @Service
 public class UsersService {
     @Autowired
-    UsersRepository usersRepository;
+    private UsersRepository usersRepository;
 
     public void store(CreateUserDTO createUserDto) {
-        Optional<User> userExists = this.usersRepository.findByEmail(createUserDto.email());
+        ArrayList<String> passwordErrors = Password.isValid((createUserDto.password()));
 
-        if (userExists.isPresent()) {
+        if (passwordErrors.size() > 0) {
+            throw new PasswordNotValidException(passwordErrors);
+        }
+
+        User user = this.usersRepository.findByEmail(createUserDto.email());
+
+        if (user != null) {
             throw new UserAlreadyExistsException();
         }
 
-        userExists = this.usersRepository.findByCpf(createUserDto.cpf());
+        user = this.usersRepository.findByCpf(createUserDto.cpf());
 
-        if (userExists.isPresent()) {
+        if (user != null) {
             throw new UserAlreadyExistsException();
         }
 
-        userExists = this.usersRepository.findByRg((createUserDto.rg()));
+        user = this.usersRepository.findByRg((createUserDto.rg()));
 
-        if (userExists.isPresent()) {
+        if (user != null) {
             throw new UserAlreadyExistsException();
         }
 
-        userExists = this.usersRepository.findByPhone((createUserDto.rg()));
+        user = this.usersRepository.findByPhone((createUserDto.rg()));
 
-        if (userExists.isPresent()) {
+        if (user != null) {
             throw new UserAlreadyExistsException();
         }
 
-        User user = new User();
-        BeanUtils.copyProperties(createUserDto, user);
+        User newUser = new User();
 
-        this.usersRepository.save(user);
+        BeanUtils.copyProperties(createUserDto, newUser);
+        String passwordHashed = new BCryptPasswordEncoder().encode(newUser.getPassword());
+        newUser.setPassword(passwordHashed);
+
+        this.usersRepository.save(newUser);
     }
 
     public List<User> all() {

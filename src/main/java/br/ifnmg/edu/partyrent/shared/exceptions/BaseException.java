@@ -1,11 +1,13 @@
 package br.ifnmg.edu.partyrent.shared.exceptions;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 public class BaseException extends RuntimeException {
     public Integer statusCode;
     public String message;
     public OffsetDateTime date;
+    public List<String> details;
 
     public BaseException(Integer statusCode, String message) {
         this.statusCode = statusCode;
@@ -19,6 +21,14 @@ public class BaseException extends RuntimeException {
 
     public void setStatusCode(Integer statusCode) {
         this.statusCode = statusCode;
+    }
+
+    public List<String> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<String> details) {
+        this.details = details;
     }
 
     public String getMessage() {

@@ -1,8 +1,10 @@
 package br.ifnmg.edu.partyrent.modules.users.dtos;
 
+import jakarta.validation.constraints.Email;
+
 public record UpdateUserDTO(
         String name,
-        String email,
+        @Email String email,
         String occupation,
         String phone
 ) { }
