@@ -5,6 +5,7 @@ import br.ifnmg.edu.partyrent.modules.users.dtos.UpdateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 
 import br.ifnmg.edu.partyrent.modules.users.services.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> store(@RequestBody CreateUserDTO createUserDto) {
+    public ResponseEntity<Void> store(@RequestBody() @Valid CreateUserDTO createUserDto) {
         this.usersService.store(createUserDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -42,7 +43,7 @@ public class UsersController {
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<User> update(@PathVariable() UUID userId, @RequestBody() UpdateUserDTO updateUserDto) {
+    public ResponseEntity<User> update(@PathVariable() UUID userId, @RequestBody() @Valid UpdateUserDTO updateUserDto) {
         User user = this.usersService.update(userId, updateUserDto);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
