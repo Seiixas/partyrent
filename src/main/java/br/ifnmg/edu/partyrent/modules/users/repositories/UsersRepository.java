@@ -4,6 +4,7 @@ import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface UsersRepository extends JpaRepository<User, UUID> {
@@ -11,4 +12,5 @@ public interface UsersRepository extends JpaRepository<User, UUID> {
     public User findByPhone(String phone);
     public User findByCpf(String cpf);
     public User findByRg(String rg);
+    public Optional<User> findByActivationCode(String activationCode);
 }

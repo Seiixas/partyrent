@@ -8,23 +8,31 @@ import br.ifnmg.edu.partyrent.modules.users.exceptions.UserAlreadyExistsExceptio
 import br.ifnmg.edu.partyrent.modules.users.exceptions.UserNotFoundException;
 import br.ifnmg.edu.partyrent.modules.users.repositories.UsersRepository;
 
+import br.ifnmg.edu.partyrent.shared.providers.MailProvider.implementations.JavaMailProvider;
 import br.ifnmg.edu.partyrent.shared.utils.Password;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
+
+import static org.antlr.v4.runtime.misc.Utils.readFile;
 
 @Service
 public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public void store(CreateUserDTO createUserDto) {
+    @Autowired
+    private JavaMailProvider javaMailProvider;
+
+    public void store(CreateUserDTO createUserDto) throws MessagingException {
         ArrayList<String> passwordErrors = Password.isValid((createUserDto.password()));
 
         if (passwordErrors.size() > 0) {
@@ -60,6 +68,28 @@ public class UsersService {
         BeanUtils.copyProperties(createUserDto, newUser);
         String passwordHashed = new BCryptPasswordEncoder().encode(newUser.getPassword());
         newUser.setPassword(passwordHashed);
+        newUser.setActivated(false);
+
+        try {
+            ClassPathResource resource = new ClassPathResource("email/active_account.html");
+            byte[] fileData = FileCopyUtils.copyToByteArray(resource.getFile());
+
+            String activationCode = UUID.randomUUID().toString();
+
+            String htmlTemplate = new String(fileData, StandardCharsets.UTF_8);
+            htmlTemplate = htmlTemplate.replace("${name}", newUser.getName());
+            htmlTemplate = htmlTemplate.replace("${invitationurl}", "http://localhost:8080/auth/active?token=" + activationCode);
+
+            javaMailProvider.sendMail(
+                    newUser.getEmail(),
+                    "Ative sua conta!",
+                    htmlTemplate
+            );
+
+            newUser.setActivationCode(activationCode);
+        } catch (MessagingException | IOException e) {
+            throw new RuntimeException(e);
+        }
 
         this.usersRepository.save(newUser);
     }

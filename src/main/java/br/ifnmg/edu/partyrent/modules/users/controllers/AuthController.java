@@ -14,9 +14,14 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid LoginDTO loginDto) {
         LoginResponseDTO loginResponse = this.authService.login(loginDto);
         return ResponseEntity.status(200).body(loginResponse);
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<String> active(@RequestParam(name="token") String token) {
+        return ResponseEntity.ok(this.authService.activateUser(token));
     }
 }

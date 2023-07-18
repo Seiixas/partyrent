@@ -5,6 +5,7 @@ import br.ifnmg.edu.partyrent.modules.users.dtos.UpdateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 
 import br.ifnmg.edu.partyrent.modules.users.services.UsersService;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class UsersController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> store(@RequestBody() @Valid CreateUserDTO createUserDto) {
+    public ResponseEntity<Void> store(@RequestBody() @Valid CreateUserDTO createUserDto) throws MessagingException {
         this.usersService.store(createUserDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

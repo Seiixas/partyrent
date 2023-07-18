@@ -3,6 +3,8 @@ package br.ifnmg.edu.partyrent.modules.users.services;
 import br.ifnmg.edu.partyrent.modules.users.dtos.LoginDTO;
 import br.ifnmg.edu.partyrent.modules.users.dtos.LoginResponseDTO;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
+import br.ifnmg.edu.partyrent.modules.users.exceptions.InvalidTokenException;
+import br.ifnmg.edu.partyrent.modules.users.exceptions.UserNotFoundException;
 import br.ifnmg.edu.partyrent.modules.users.repositories.UsersRepository;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +66,29 @@ public class AuthService implements UserDetailsService {
                 .build()
                 .verify(token)
                 .getSubject();
+    }
+
+    public String activateUser(String token) {
+        var userExists = this.usersRepository.findByActivationCode(token);
+
+        if (userExists.isEmpty()) {
+            throw new InvalidTokenException();
+        }
+
+        User user = userExists.get();
+
+        boolean tokenIsDifferent = !(user.getActivationCode().equals(token));
+        boolean userIsAlreadyActivated = user.getActivated();
+
+        if (tokenIsDifferent || userIsAlreadyActivated) {
+            throw new InvalidTokenException();
+        }
+
+        user.setActivated(true);
+        user.setActivationCode(null);
+
+        this.usersRepository.save(user);
+
+        return "<h2>" + user.getName() + ", sua conta foi ativada com sucesso! 🥳</h2>";
     }
 }
