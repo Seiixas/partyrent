@@ -1,0 +1,9 @@
+package br.ifnmg.edu.partyrent.modules.places.errors;
+
+import br.ifnmg.edu.partyrent.shared.exceptions.BaseException;
+
+public class SpecificationAlreadyExistsException extends BaseException {
+    public SpecificationAlreadyExists() {
+        super()
+    }
+}
