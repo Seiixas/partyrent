@@ -7,6 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -23,6 +24,9 @@ public class Place {
     private Integer capacity;
 
     private BigDecimal price;
+
+    @ManyToMany(mappedBy = "places")
+    private Set<Specification> specifications;
 
     public Address getAddress() {
         return address;
@@ -96,5 +100,13 @@ public class Place {
 
     public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Set<Specification> getSpecifications() {
+        return specifications;
+    }
+
+    public void setSpecifications(Set<Specification> specifications) {
+        this.specifications = specifications;
     }
 }

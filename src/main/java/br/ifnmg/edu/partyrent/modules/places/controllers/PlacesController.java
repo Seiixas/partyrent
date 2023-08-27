@@ -1,8 +1,10 @@
 package br.ifnmg.edu.partyrent.modules.places.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.dtos.CreatePlaceDTO;
+import br.ifnmg.edu.partyrent.modules.places.dtos.ManagePlaceSpecificationsDTO;
 import br.ifnmg.edu.partyrent.modules.places.dtos.UpdatePlaceDTO;
 import br.ifnmg.edu.partyrent.modules.places.entities.Place;
+import br.ifnmg.edu.partyrent.modules.places.entities.Specification;
 import br.ifnmg.edu.partyrent.modules.places.services.PlacesService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,14 @@ public class PlacesController {
     public ResponseEntity<Void> store(@RequestBody() @Valid() CreatePlaceDTO createPlaceDto) {
         this.placesService.store(createPlaceDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PostMapping("/{placeId}/specifications")
+    public ResponseEntity<Place> managePlaceSpecifications(
+            @PathVariable() UUID placeId,
+            @RequestBody() @Valid() ManagePlaceSpecificationsDTO managePlaceSpecificationsDto
+    ) {
+        return ResponseEntity.ok(this.placesService.managePlaceSpecifications(placeId, managePlaceSpecificationsDto));
     }
 
     @GetMapping()
