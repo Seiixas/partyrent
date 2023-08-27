@@ -1,5 +1,6 @@
 package br.ifnmg.edu.partyrent.modules.users.entities;
 
+import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -42,6 +43,18 @@ public class User implements UserDetails {
     @Column(name="activation_code")
     private String activationCode;
     private Boolean activated;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     @CreationTimestamp
     private LocalDateTime created_at;

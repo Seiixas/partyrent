@@ -1,5 +1,7 @@
 package br.ifnmg.edu.partyrent.modules.users.services;
 
+import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
+import br.ifnmg.edu.partyrent.modules.addresses.services.AddressesService;
 import br.ifnmg.edu.partyrent.modules.users.dtos.CreateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.dtos.UpdateUserDTO;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
@@ -22,12 +24,13 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-import static org.antlr.v4.runtime.misc.Utils.readFile;
-
 @Service
 public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private AddressesService addressesService;
 
     @Autowired
     private JavaMailProvider javaMailProvider;
@@ -64,6 +67,9 @@ public class UsersService {
         }
 
         User newUser = new User();
+
+        Address address = this.addressesService.store(createUserDto.address());
+        newUser.setAddress(address);
 
         BeanUtils.copyProperties(createUserDto, newUser);
         String passwordHashed = new BCryptPasswordEncoder().encode(newUser.getPassword());
@@ -128,6 +134,12 @@ public class UsersService {
         User userToUpdate = user.get();
 
         BeanUtils.copyProperties(updateUserDTO, userToUpdate);
+
+        if (updateUserDTO.address() != null) {
+            Address address = userToUpdate.getAddress();
+            Address addressUpdated = this.addressesService.update(address.getId(), updateUserDTO.address());
+            userToUpdate.setAddress(addressUpdated);
+        }
 
         this.usersRepository.save(userToUpdate);
 

@@ -1,5 +1,7 @@
 package br.ifnmg.edu.partyrent.modules.places.services;
 
+import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
+import br.ifnmg.edu.partyrent.modules.addresses.services.AddressesService;
 import br.ifnmg.edu.partyrent.modules.places.dtos.CreatePlaceDTO;
 import br.ifnmg.edu.partyrent.modules.places.dtos.UpdatePlaceDTO;
 import br.ifnmg.edu.partyrent.modules.places.entities.Place;
@@ -22,10 +24,17 @@ public class PlacesService {
     @Autowired
     private PlacesRepository placesRepository;
 
+    @Autowired
+    private AddressesService addressesService;
+
     public void store(CreatePlaceDTO createPlaceDto) {
+        Address address = this.addressesService.store(createPlaceDto.address());
+
         Place newPlace = new Place();
 
         BeanUtils.copyProperties(createPlaceDto, newPlace);
+
+        newPlace.setAddress(address);
 
         this.placesRepository.save(newPlace);
     }
@@ -57,6 +66,12 @@ public class PlacesService {
         Place placeToUpdate = place.get();
 
         BeanUtils.copyProperties(updatePlaceDto, placeToUpdate);
+
+        if (updatePlaceDto.address() != null) {
+            Address address = placeToUpdate.getAddress();
+            Address addressUpdated = this.addressesService.update(address.getId(), updatePlaceDto.address());
+            placeToUpdate.setAddress(addressUpdated);
+        }
 
         this.placesRepository.save(placeToUpdate);
 

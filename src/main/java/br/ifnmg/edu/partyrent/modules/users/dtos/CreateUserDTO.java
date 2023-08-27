@@ -1,5 +1,6 @@
 package br.ifnmg.edu.partyrent.modules.users.dtos;
 
+import br.ifnmg.edu.partyrent.modules.addresses.dtos.CreateAddressDTO;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -15,5 +16,6 @@ public record CreateUserDTO(
         String cpf,
         String rg,
         String occupation,
-        String phone
+        String phone,
+        CreateAddressDTO address
 ) { }

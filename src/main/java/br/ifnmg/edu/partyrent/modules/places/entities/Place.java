@@ -1,5 +1,6 @@
 package br.ifnmg.edu.partyrent.modules.places.entities;
 
+import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,6 +23,18 @@ public class Place {
     private Integer capacity;
 
     private BigDecimal price;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
 
     @CreationTimestamp
     private LocalDateTime created_at;
