@@ -1,6 +1,8 @@
 package br.ifnmg.edu.partyrent.modules.users.entities;
 
 import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
+import br.ifnmg.edu.partyrent.modules.rentals.entities.Rental;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -10,10 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -48,6 +47,9 @@ public class User implements UserDetails {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    @OneToMany()
+    private Set<Rental> rentals;
+
     public Address getAddress() {
         return address;
     }
@@ -79,6 +81,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
@@ -135,6 +138,7 @@ public class User implements UserDetails {
         this.phone = phone;
     }
 
+    @JsonIgnore
     public String getActivationCode() {
         return activationCode;
     }
@@ -143,6 +147,7 @@ public class User implements UserDetails {
         this.activationCode = activationCode;
     }
 
+    @JsonIgnore
     public Boolean getActivated() {
         return activated;
     }
@@ -168,6 +173,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
@@ -178,21 +184,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true ;
     }
@@ -208,5 +218,14 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(name, email, birthday, cpf, rg, occupation, phone);
+    }
+
+    @JsonIgnore
+    public Set<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(Set<Rental> rentals) {
+        this.rentals = rentals;
     }
 }

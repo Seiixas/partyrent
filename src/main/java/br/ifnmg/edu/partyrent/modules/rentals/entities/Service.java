@@ -1,7 +1,5 @@
-package br.ifnmg.edu.partyrent.modules.places.entities;
+package br.ifnmg.edu.partyrent.modules.rentals.entities;
 
-import br.ifnmg.edu.partyrent.modules.addresses.entities.Address;
-import br.ifnmg.edu.partyrent.modules.rentals.entities.Rental;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,9 +10,9 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
-@Table(name="places")
-public class Place {
+@Entity()
+@Table(name = "services")
+public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -23,27 +21,10 @@ public class Place {
 
     private String description;
 
-    private Integer capacity;
-
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "places")
-    private Set<Specification> specifications;
-
-    @OneToMany()
+    @ManyToMany(mappedBy = "services")
     private Set<Rental> rentals;
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
 
     @CreationTimestamp
     private LocalDateTime created_at;
@@ -75,14 +56,6 @@ public class Place {
         this.description = description;
     }
 
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -107,15 +80,7 @@ public class Place {
         this.updated_at = updated_at;
     }
 
-    public Set<Specification> getSpecifications() {
-        return specifications;
-    }
-
-    public void setSpecifications(Set<Specification> specifications) {
-        this.specifications = specifications;
-    }
-
-    @JsonIgnore
+    @JsonIgnore()
     public Set<Rental> getRentals() {
         return rentals;
     }

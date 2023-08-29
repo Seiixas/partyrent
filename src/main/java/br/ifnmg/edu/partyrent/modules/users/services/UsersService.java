@@ -114,6 +114,16 @@ public class UsersService {
         return user.get();
     }
 
+    public User findByEmail(String email) {
+        User user = this.usersRepository.findByEmail(email);
+
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+
+        return user;
+    }
+
     public void delete(UUID userId) {
         Optional<User> user = this.usersRepository.findById(userId);
 
