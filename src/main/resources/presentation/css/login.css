@@ -1,0 +1,4 @@
+.link {
+	-fx-underline: true;
+	-fx-cursor: hand;
+}

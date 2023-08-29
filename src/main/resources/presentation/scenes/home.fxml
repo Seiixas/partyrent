@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
+            fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.HomeController">
+   <children>
+      <Label fx:id="label" layoutX="14.0" layoutY="14.0" text="Label"/>
+      <MFXButton layoutX="368.0" layoutY="19.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="218.0"
+                 text="Button"/>
+   </children>
+</AnchorPane>
