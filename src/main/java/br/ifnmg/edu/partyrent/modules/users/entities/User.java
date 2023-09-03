@@ -43,7 +43,7 @@ public class User implements UserDetails {
     private String activationCode;
     private Boolean activated;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
