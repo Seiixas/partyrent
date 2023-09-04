@@ -8,49 +8,59 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" stylesheets="@../css/login.css"
-            style="-fx-background-color: #1b263b;" xmlns="http://javafx.com/javafx/11.0.14-internal"
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            maxHeight="1080.0"
+            maxWidth="1920.0"
+            prefHeight="400.0"
+            prefWidth="600.0"
+            stylesheets="@../css/login.css"
+            xmlns="http://javafx.com/javafx/11.0.14-internal"
             fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.LoginController">
-   <right>
-      <VBox fx:id="vbox_login" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-         </padding>
-         <children>
-            <Label text="Conectar-se" textFill="#e0e1dd">
-               <font>
-                  <Font name="Corbel" size="18.0" />
-               </font>
-            </Label>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-               <children>
-                  <MFXTextField fx:id="field_email" floatMode="ABOVE" minWidth="200.0" promptText="E-Mail" text="admin@partyrent.com" />
-                  <MFXPasswordField fx:id="field_password" allowPaste="true" floatMode="ABOVE" minWidth="200.0" promptText="Senha" text="Admin@PartyRent123" />
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
-                     <children>
-                        <MFXCheckbox fx:id="checkbox_keep_connected" style="-fx-text-fill: #e0e1dd;" text="Continuar conectado" />
-                        <MFXButton fx:id="button_login" minHeight="35.0" minWidth="200.0" onAction="#login" style="-fx-text-fill: #778da9;" text="Conectar">
-                           <VBox.margin>
-                              <Insets top="8.0" />
-                           </VBox.margin>
-                        </MFXButton>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="8.0" />
-                     </VBox.margin>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
-                     <children>
-                        <Label styleClass="link" onMouseClicked="#signup" text="Registrar" textFill="#778da9"/>
-                     </children>
-                  </VBox>
-               </children>
-            </VBox>
-         </children>
-         <BorderPane.margin>
-            <Insets right="24.0" />
-         </BorderPane.margin>
-      </VBox>
-   </right>
+    <right>
+        <VBox fx:id="vbox_login" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0"
+              BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+            <children>
+                <Label text="Conectar-se" textFill="#e0e1dd">
+                    <font>
+                        <Font name="Corbel" size="18.0"/>
+                    </font>
+                </Label>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+                    <children>
+                        <MFXTextField fx:id="field_email" floatMode="ABOVE" minWidth="200.0" promptText="E-Mail"
+                                      text="admin@partyrent.com"/>
+                        <MFXPasswordField fx:id="field_password" allowPaste="true" floatMode="ABOVE" minWidth="200.0"
+                                          promptText="Senha" text="Admin@PartyRent123"/>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+                            <children>
+                                <MFXCheckbox fx:id="checkbox_keep_connected" style="-fx-text-fill: #e0e1dd;"
+                                             text="Continuar conectado"/>
+                                <MFXButton fx:id="button_login" minHeight="35.0" minWidth="200.0" onAction="#login"
+                                           style="-fx-text-fill: #778da9;" text="Conectar">
+                                    <VBox.margin>
+                                        <Insets top="8.0"/>
+                                    </VBox.margin>
+                                </MFXButton>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="8.0"/>
+                            </VBox.margin>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="4.0">
+                            <children>
+                                <Label styleClass="link" onMouseClicked="#signup" text="Registrar" textFill="#778da9"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+            <BorderPane.margin>
+                <Insets right="24.0"/>
+            </BorderPane.margin>
+        </VBox>
+    </right>
 </BorderPane>

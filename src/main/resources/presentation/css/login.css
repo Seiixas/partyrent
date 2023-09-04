@@ -1,3 +1,9 @@
+@import "colors.css"
+
+.root {
+    -fx-background-color: -color-primary;
+}
+
 .link {
 	-fx-underline: true;
 	-fx-cursor: hand;
