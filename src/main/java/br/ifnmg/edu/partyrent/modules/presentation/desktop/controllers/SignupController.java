@@ -94,19 +94,23 @@ public class SignupController extends GenericController implements Initializable
     private VBox vbox_errors;
 
     @FXML
-    private final Label label_empty_fields = createErrorLabel("Todos os campos devem ser preenchidos!");
+    private Label label_empty_fields;
 
     @FXML
-    private final Label label_password_match = createErrorLabel("As senhas devem coincidir!");
+    private Label label_password_match;
 
     @FXML
-    private final Label label_password_security = createErrorLabel("As senhas devem conter pelo menos 8 caracteres, um caractere especial, um caractere maiúsculo, um caractere minúsculo e um dígito");
+    private Label label_password_security;
 
     @Autowired
     UsersController usersController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        label_empty_fields = createErrorLabel("Todos os campos devem ser preenchidos!");
+        label_password_match = createErrorLabel("As senhas devem coincidir!");
+        label_password_security = createErrorLabel("As senhas devem conter pelo menos 8 caracteres, um caractere especial, um caractere maiúsculo, um caractere minúsculo e um dígito");
+
         datepicker_birthdate.setConverterSupplier(
                 () -> new DateStringConverter("dd/MM/yyyy",
                         datepicker_birthdate.getLocale()));
