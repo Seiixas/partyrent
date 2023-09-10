@@ -27,7 +27,7 @@ public class Place {
 
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "places")
+    @ManyToMany(mappedBy = "places", fetch = FetchType.EAGER)
     private Set<Specification> specifications;
 
     @OneToMany()
