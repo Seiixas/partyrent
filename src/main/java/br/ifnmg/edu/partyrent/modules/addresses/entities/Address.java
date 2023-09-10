@@ -158,21 +158,15 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
-                "id=" + id +
-                ", street='" + street + '\'' +
-                ", district='" + district + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", complement='" + complement + '\'' +
-                ", number='" + number + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", cep='" + cep + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
-                ", user=" + user +
-                ", places=" + places +
-                '}';
+
+        return "%s, Nº%s%s, %s - %s/%s - %s".formatted(
+                street,
+                number,
+                (complement != null ? ", " + complement : ""),
+                district,
+                city,
+                state,
+                cep
+        );
     }
 }
