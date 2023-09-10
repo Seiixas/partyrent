@@ -37,8 +37,8 @@
                                           promptText="Senha" text="Admin@PartyRent123"/>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
                             <children>
-                                <MFXCheckbox fx:id="checkbox_keep_connected" style="-fx-text-fill: #e0e1dd;"
-                                             text="Continuar conectado"/>
+<!--                                <MFXCheckbox fx:id="checkbox_keep_connected" style="-fx-text-fill: #e0e1dd;"-->
+<!--                                             text="Continuar conectado"/>-->
                                 <MFXButton fx:id="button_login" minHeight="35.0" minWidth="200.0" onAction="#login"
                                            style="-fx-text-fill: #778da9;" text="Conectar">
                                     <VBox.margin>

@@ -26,8 +26,8 @@ public class LoginController extends GenericController {
     @FXML
     private MFXButton button_login;
 
-    @FXML
-    private MFXCheckbox checkbox_keep_connected;
+//    @FXML
+//    private MFXCheckbox checkbox_keep_connected;
 
     @FXML
     private MFXTextField field_email;
