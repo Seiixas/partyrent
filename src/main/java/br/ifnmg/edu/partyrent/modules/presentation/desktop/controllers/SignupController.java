@@ -67,9 +67,6 @@ public class SignupController extends GenericController implements Initializable
     private MFXTextField field_number;
 
     @FXML
-    private MFXTextField field_occupation;
-
-    @FXML
     private MFXPasswordField field_password;
 
     @FXML
@@ -117,7 +114,7 @@ public class SignupController extends GenericController implements Initializable
     }
 
     private List<MFXTextField> fieldList() {
-        return List.of(field_email, field_password, field_password_confirm, field_name, field_cpf, field_rg, field_phone, field_occupation, datepicker_birthdate, field_street, field_number, field_complement, field_district, field_city, field_state, field_cep);
+        return List.of(field_email, field_password, field_password_confirm, field_name, field_cpf, field_rg, field_phone, datepicker_birthdate, field_street, field_number, field_complement, field_district, field_city, field_state, field_cep);
     }
 
     private List<Control> controlList() {
@@ -198,7 +195,7 @@ public class SignupController extends GenericController implements Initializable
                 birthDay,
                 fieldContents.get("field_cpf"),
                 fieldContents.get("field_rg"),
-                fieldContents.get("field_occupation"),
+                "user",
                 fieldContents.get("field_phone"),
                 addressDTO
         );

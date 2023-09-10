@@ -50,7 +50,6 @@
                 <MFXTextField fx:id="field_name" floatMode="ABOVE" minWidth="200.0" promptText="Nome"/>
                 <MFXTextField fx:id="field_cpf" floatMode="ABOVE" minWidth="200.0" promptText="CPF"/>
                 <MFXTextField fx:id="field_rg" floatMode="ABOVE" minWidth="200.0" promptText="RG"/>
-                <MFXTextField fx:id="field_occupation" floatMode="ABOVE" minWidth="200.0" promptText="Ocupação"/>
                 <MFXTextField fx:id="field_phone" floatMode="ABOVE" minWidth="200.0" promptText="Telefone"/>
                 <MFXDatePicker fx:id="datepicker_birthdate" promptText="Data de nascimento"/>
             </children>
