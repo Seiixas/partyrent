@@ -69,7 +69,7 @@ public class Address {
     private User user;
 
     @OneToOne(mappedBy = "address")
-    private Place places;
+    private Place place;
 
     @Override
     public boolean equals(Object o) {
