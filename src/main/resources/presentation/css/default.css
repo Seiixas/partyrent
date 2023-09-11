@@ -1,0 +1,12 @@
+@import "colors.css";
+
+Label {
+    -fx-text-fill: -color-contrast;
+}
+
+.mfx-button,
+.mfx-button:armed,
+.mfx-button:focused {
+    -fx-text-fill: white;
+    -fx-background-color: -color-accent;
+}

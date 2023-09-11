@@ -1,8 +1,5 @@
-@import "colors.css"
-
-.root {
-    -fx-background-color: -color-primary;
-}
+@import "colors.css" ;
+@import "default.css";
 
 .link {
 	-fx-underline: true;
