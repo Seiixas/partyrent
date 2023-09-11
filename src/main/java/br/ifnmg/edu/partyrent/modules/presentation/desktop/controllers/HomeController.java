@@ -5,7 +5,6 @@ import br.ifnmg.edu.partyrent.modules.places.entities.Place;
 import br.ifnmg.edu.partyrent.modules.places.entities.Specification;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -39,9 +38,6 @@ public class HomeController extends GenericController implements Initializable {
     private PlacesController placesController;
 
     @FXML
-    private Label label_greeting;
-
-    @FXML
     private VBox vbox_places;
 
     @FXML
@@ -49,10 +45,7 @@ public class HomeController extends GenericController implements Initializable {
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        vbox_places.addEventHandler(EventType.ROOT, event -> vbox_places.minWidthProperty().bind(vbox_places.getScene().widthProperty()));
-
         User currentUser = (User) sessionManager.getObject("user");
-        label_greeting.setText("Olá, " + currentUser.getName());
 
         if (!currentUser.getOccupation().equals("admin")) {
             button_add_place.visibleProperty().set(false);
@@ -107,7 +100,9 @@ public class HomeController extends GenericController implements Initializable {
 
     private Node generatePlaceView(Place place) {
         VBox root = new VBox();
+
         root.cursorProperty().set(Cursor.HAND);
+        root.getStyleClass().add("card");
 
         root.setOnMouseClicked(mouseEvent -> {
             sessionManager.setObject("place", place);
@@ -115,7 +110,7 @@ public class HomeController extends GenericController implements Initializable {
         });
 
         root.alignmentProperty().set(Pos.CENTER_LEFT);
-        VBox.setMargin(root, new Insets(8, 0, 8, 8));
+        VBox.setMargin(root, new Insets(0, 0, 8, 8));
         setPadding(root, 8);
 
         Background background = new Background(new BackgroundFill(Paint.valueOf("#EBF2FA"), null, null));
