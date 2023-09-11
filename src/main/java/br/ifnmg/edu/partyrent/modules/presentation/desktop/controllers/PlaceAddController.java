@@ -27,8 +27,8 @@ import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
-@FxmlView("/presentation/scenes/add_place.fxml")
-public class AddPlaceController extends GenericController implements Initializable {
+@FxmlView("/presentation/scenes/place_add.fxml")
+public class PlaceAddController extends GenericController implements Initializable {
     @FXML
     private Label error_label;
 

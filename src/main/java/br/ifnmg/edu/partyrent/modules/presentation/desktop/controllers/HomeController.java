@@ -57,7 +57,7 @@ public class HomeController extends GenericController implements Initializable {
 
     @FXML
     private void create() {
-        loadScene(button_add_place, AddPlaceController.class);
+        loadScene(button_add_place, PlaceAddController.class);
     }
 
     private void loadPlaces() {
