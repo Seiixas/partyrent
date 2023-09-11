@@ -22,7 +22,7 @@
             </padding>
 
             <children>
-                <Label text="Regisrar" textFill="#e0e1dd">
+                <Label text="Regisrar">
                     <font>
                         <Font name="Corbel" size="18.0"/>
                     </font>
@@ -70,9 +70,9 @@
                 <MFXTextField fx:id="field_state" floatMode="ABOVE" minWidth="200.0" promptText="Estado"/>
                 <MFXTextField fx:id="field_cep" floatMode="ABOVE" minWidth="200.0" promptText="CEP"/>
                 <MFXButton fx:id="button_signup" minHeight="35.0" minWidth="200.0" onMouseClicked="#signup"
-                           style="-fx-text-fill: #778da9;" text="Registrar"/>
+                           text="Registrar"/>
                 <MFXButton fx:id="button_cancel" minHeight="35.0" minWidth="200.0" onMouseClicked="#goBack"
-                           style="-fx-text-fill: #778da9;" text="Cancelar"/>
+                           text="Cancelar"/>
                 <VBox spacing="4.0" alignment="CENTER" fx:id="vbox_errors">
                     <children>
 
