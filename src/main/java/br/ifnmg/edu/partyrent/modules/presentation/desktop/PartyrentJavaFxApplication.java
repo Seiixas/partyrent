@@ -23,7 +23,9 @@ public class PartyrentJavaFxApplication extends Application {
         Scene scene = new Scene(root);
 
         MFXThemeManager.addOn(scene, Themes.DEFAULT, Themes.LEGACY);
-        
+
+        stage.setMaximized(true);
+
         stage.setScene(scene);
         stage.show();
     }

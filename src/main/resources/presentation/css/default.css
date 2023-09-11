@@ -10,3 +10,9 @@ Label {
     -fx-text-fill: white;
     -fx-background-color: -color-accent;
 }
+
+.mfx-scroll-pane:focused,
+.mfx-scroll-pane:armed,
+.mfx-scroll-pane {
+    -fx-background-color: transparent;
+}
