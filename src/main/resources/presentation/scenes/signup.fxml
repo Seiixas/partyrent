@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-            stylesheets="@../css/signup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.SignupController">
     <left>
         <VBox fx:id="vbox_signup" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0"

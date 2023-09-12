@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@../css/service_create.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.ServicesManagerController">
+<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.ServicesManagerController">
 
     <children>
         <HBox alignment="CENTER_LEFT" spacing="20.0">
