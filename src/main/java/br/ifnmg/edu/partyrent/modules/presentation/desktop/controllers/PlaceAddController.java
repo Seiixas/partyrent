@@ -124,8 +124,6 @@ public class PlaceAddController extends GenericController implements Initializab
                 fieldContents.get("field_cep")
         );
 
-        System.out.println(addressDTO);
-
         CreatePlaceDTO placeDTO = new CreatePlaceDTO(
                 fieldContents.get("field_name"),
                 fieldContents.get("field_description"),
@@ -133,8 +131,6 @@ public class PlaceAddController extends GenericController implements Initializab
                 new BigDecimal(fieldContents.get("field_price").replace(",", ".")),
                 addressDTO
         );
-
-        System.out.println(placeDTO);
 
         Thread thread = new Thread(() -> {
             try {
