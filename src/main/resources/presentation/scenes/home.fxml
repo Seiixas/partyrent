@@ -2,27 +2,25 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/home.css"
-      xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.HomeController">
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/home.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.HomeController">
     <children>
         <AnchorPane VBox.vgrow="ALWAYS">
             <children>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"
-                            AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                            AnchorPane.topAnchor="25.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                     <children>
-                        <MFXScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER"
-                                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <MFXScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <VBox fx:id="vbox_places" alignment="CENTER">
                                 <padding>
-                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                                 </padding>
                             </VBox>
                         </MFXScrollPane>
@@ -34,29 +32,34 @@
             <children>
                 <Label maxHeight="1.7976931348623157E308" text="\@PartyRent Alpha 1.0" HBox.hgrow="ALWAYS">
                     <font>
-                        <Font size="11.0" fx:id="x3"/>
+                        <Font size="11.0" fx:id="x3" />
                     </font>
                     <textFill>
-                        <Color red="0.625" green="0.625" blue="0.625" fx:id="x4"/>
+                        <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
                     </textFill>
                     <HBox.margin>
-                        <Insets left="16.0"/>
+                        <Insets left="16.0" />
                     </HBox.margin>
                 </Label>
-                <Pane HBox.hgrow="ALWAYS"/>
+                <Pane HBox.hgrow="ALWAYS" />
+            <MFXButton onMouseClicked="#manageServices" fx:id="button_manage_services" minWidth="200.0" text="Gerenciar serviços">
+               <HBox.margin>
+                  <Insets bottom="8.0" />
+               </HBox.margin>
+            </MFXButton>
                 <MFXButton fx:id="button_manage_specifications" minWidth="200.0" text="Gerenciar especificações">
                     <HBox.margin>
-                        <Insets bottom="8.0"/>
+                        <Insets bottom="8.0" />
                     </HBox.margin>
                 </MFXButton>
-                <MFXButton fx:id="button_add_place" onMouseClicked="#create" text="Adicionar localização">
+                <MFXButton fx:id="button_add_place" onMouseClicked="#createPlace" text="Adicionar localização">
                     <HBox.margin>
-                        <Insets bottom="8.0" right="16.0"/>
+                        <Insets bottom="8.0" right="16.0" />
                     </HBox.margin>
                 </MFXButton>
             </children>
             <padding>
-                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
             </padding>
         </HBox>
     </children>

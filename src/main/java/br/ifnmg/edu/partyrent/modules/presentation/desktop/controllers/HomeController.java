@@ -34,6 +34,9 @@ public class HomeController extends GenericController implements Initializable {
     @FXML
     private MFXButton button_manage_specifications;
 
+    @FXML
+    private MFXButton button_manage_services;
+
     @Autowired
     private PlacesController placesController;
 
@@ -50,14 +53,20 @@ public class HomeController extends GenericController implements Initializable {
         if (!currentUser.getOccupation().equals("admin")) {
             button_add_place.visibleProperty().set(false);
             button_manage_specifications.visibleProperty().set(false);
+            button_manage_services.visibleProperty().set(false);
         }
 
         loadPlaces();
     }
 
     @FXML
-    private void create() {
-        loadScene(button_add_place, PlaceAddController.class);
+    private void createPlace() {
+        loadScene(vbox_places, PlaceAddController.class);
+    }
+
+    @FXML
+    private void manageServices() {
+        loadScene(vbox_places, ServicesManagerController.class);
     }
 
     private void loadPlaces() {
