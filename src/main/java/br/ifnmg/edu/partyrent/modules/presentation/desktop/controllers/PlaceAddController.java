@@ -2,15 +2,21 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.addresses.dtos.CreateAddressDTO;
 import br.ifnmg.edu.partyrent.modules.places.controllers.PlacesController;
+import br.ifnmg.edu.partyrent.modules.places.controllers.SpecificationsController;
 import br.ifnmg.edu.partyrent.modules.places.dtos.CreatePlaceDTO;
+import br.ifnmg.edu.partyrent.modules.places.dtos.ManagePlaceSpecificationsDTO;
+import br.ifnmg.edu.partyrent.modules.places.entities.Place;
 import br.ifnmg.edu.partyrent.modules.places.entities.Specification;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.Error;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.ResponseValidator;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxmlView;
@@ -20,10 +26,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
@@ -81,7 +84,10 @@ public class PlaceAddController extends GenericController implements Initializab
     private final ArrayList<Specification> selectedSpecifications = new ArrayList<>();
 
     @Autowired
-    private PlacesController placesController ;
+    private PlacesController placesController;
+
+    @Autowired
+    private SpecificationsController specificationsController;
 
     private List<MFXTextField> fieldList() {
         return List.of(field_name, field_description, field_capacity, field_price, field_street, field_number, field_complement, field_district, field_city, field_state, field_cep);
@@ -89,8 +95,6 @@ public class PlaceAddController extends GenericController implements Initializab
 
     @FXML
     private void done() {
-        System.out.println(selectedSpecifications);
-
         List<MFXTextField> controls = fieldList();
         controls.forEach(control -> control.setDisable(true));
 
@@ -135,35 +139,39 @@ public class PlaceAddController extends GenericController implements Initializab
         Thread thread = new Thread(() -> {
             try {
                 ResponseEntity<Void> response = placesController.store(placeDTO);
-
-                if (response.getStatusCode().is2xxSuccessful()) {
-
-                    Platform.runLater(() -> {
-                        Alert alert = new Alert(
-                                Alert.AlertType.CONFIRMATION,
-                                "Localização cadastrada com sucesso!",
-                                ButtonType.CLOSE);
-
-                        alert.showAndWait();
-
-                        loadScene(vbox_specifications, HomeController.class);
-                    });
-                }
+                ResponseValidator.validateStore(response, () -> manageSpecifications(placeDTO));
             } catch (Exception e) {
-                e.printStackTrace();
-
-                Platform.runLater(() -> {
-                    String errorMessage = "Um erro ocorreu: %s";
-
-                    String formattedErrorMessage = String.format(
-                            errorMessage, e.getMessage());
-
-                    new Alert(Alert.AlertType.ERROR, formattedErrorMessage).show();
-                });
+                Error.showError(e);
             }
         });
 
         thread.start();
+    }
+
+    // This is just a workaround for now
+    private void manageSpecifications(CreatePlaceDTO createPlaceDTO) {
+        ResponseEntity<List<Place>> placeResponse = placesController.findAll(null, null, createPlaceDTO.name());
+
+        ResponseValidator<List<Place>> responseValidator = new ResponseValidator<>();
+        List<Place> places = responseValidator.validate(placeResponse);
+
+        for (Place place : places) {
+            if (place.getName().equals(createPlaceDTO.name()) && place.getDescription().equals(createPlaceDTO.description())) {
+                List<UUID> uuids = selectedSpecifications.stream().map(Specification::getId).toList();
+                ManagePlaceSpecificationsDTO placeSpecificationsDTO = new ManagePlaceSpecificationsDTO(uuids);
+
+                try {
+                    ResponseEntity<Place> response = placesController.managePlaceSpecifications(place.getId(), placeSpecificationsDTO);
+                    ResponseValidator<Place> validator = new ResponseValidator<>();
+                    validator.validate(response);
+                } catch (Exception e) {
+                    Error.showError(e);
+                }
+
+                loadScene(vbox_specifications, HomeController.class);
+                break;
+            }
+        }
     }
 
     @FXML
@@ -174,50 +182,42 @@ public class PlaceAddController extends GenericController implements Initializab
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         error_label.setVisible(false);
-//        setupSpecifications();
+        setupSpecifications();
     }
 
-//    private void setupSpecifications() {
-//        ResponseEntity<List<Specification>> specificationListResponse = specificationsController.findAll();
-//
-//        if (!specificationListResponse.getStatusCode().is2xxSuccessful()) {
-//            System.out.println("ResponseError");
-//            return;
-//        }
-//
-//        if (specificationListResponse.getBody() == null) {
-//            System.out.println("ResponseBody is null!");
-//            return;
-//        }
-//
-//        List<Specification> specificationList = specificationListResponse.getBody();
-//        ArrayList<String> specificationNames = new ArrayList<>();
-//
-//        specificationList.forEach(specification -> specificationNames.add(specification.getName()));
-//
-//        ListView<String> listView = new ListView<>();
-//        listView.setMaxWidth(200);
-//
-//        specificationList.forEach(specification -> listView.getItems().add(specification.getName()));
-//
-//        listView.setCellFactory(CheckBoxListCell.forListView(item -> {
-//            BooleanProperty observable = new SimpleBooleanProperty();
-//            observable.addListener((obs, wasSelected, isNowSelected) -> {
-//                        int index = specificationNames.indexOf(item);
-//                        Specification selectedSpecification = specificationList.get(index);
-//
-//                        if (isNowSelected) {
-//                            selectedSpecifications.add(selectedSpecification);
-//                        } else {
-//                            if (selectedSpecifications.contains(selectedSpecification)) {
-//                                selectedSpecifications.remove(index);
-//                            }
-//                        }
-//                    }
-//            );
-//            return observable;
-//        }));
-//
-//        vbox_specifications.getChildren().add(listView);
-//    }
+    private void setupSpecifications() {
+        ResponseEntity<List<Specification>> specificationListResponse = specificationsController.findAll();
+
+        ResponseValidator<List<Specification>> responseValidator = new ResponseValidator<>();
+        List<Specification> specificationList = responseValidator.validate(specificationListResponse);
+
+        ArrayList<String> specificationNames = new ArrayList<>();
+
+        specificationList.forEach(specification -> specificationNames.add(specification.getName()));
+
+        ListView<String> listView = new ListView<>();
+        listView.setMaxWidth(200);
+
+        specificationList.forEach(specification -> listView.getItems().add(specification.getName()));
+
+        listView.setCellFactory(CheckBoxListCell.forListView(item -> {
+            BooleanProperty observable = new SimpleBooleanProperty();
+            observable.addListener((obs, wasSelected, isNowSelected) -> {
+                        int index = specificationNames.indexOf(item);
+                        Specification selectedSpecification = specificationList.get(index);
+
+                        if (isNowSelected) {
+                            selectedSpecifications.add(selectedSpecification);
+                        } else {
+                            if (selectedSpecifications.contains(selectedSpecification)) {
+                                selectedSpecifications.remove(index);
+                            }
+                        }
+                    }
+            );
+            return observable;
+        }));
+
+        vbox_specifications.getChildren().add(listView);
+    }
 }

@@ -15,78 +15,74 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.PlaceAddController">
-    <children>
-        <HBox alignment="CENTER_LEFT" spacing="20.0">
-            <children>
-                <ImageView fx:id="image_back" fitHeight="26.0" fitWidth="92.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../icons/back.png" />
-                    </image>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                    <HBox.margin>
-                        <Insets bottom="5.0" left="10.0" top="5.0" />
-                    </HBox.margin>
-                </ImageView>
-                <Label text="Dados da localização" />
-            </children>
-        </HBox>
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/20.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.PlaceAddController">
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <ImageView fx:id="image_back" fitHeight="26.0" fitWidth="92.0" onMouseClicked="#back"
+                   pickOnBounds="true" preserveRatio="true">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <HBox.margin>
+                <Insets bottom="5.0" left="10.0" top="5.0"/>
+            </HBox.margin>
+            <Image url="@../icons/back.png"/>
+        </ImageView>
+        <Label text="Dados da localização"/>
+    </HBox>
 
-        <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" VBox.vgrow="ALWAYS">
-            <panes>
-                <TitledPane text="Endereço">
-                    <content>
-                        <VBox alignment="CENTER" spacing="8.0">
-                            <MFXTextField fx:id="field_street" floatMode="ABOVE" minWidth="200.0" promptText="Rua" />
-                            <MFXTextField fx:id="field_number" floatMode="ABOVE" minWidth="200.0" promptText="Número" />
-                            <MFXTextField fx:id="field_complement" floatMode="ABOVE" minWidth="200.0" promptText="Complemento" />
-                            <MFXTextField fx:id="field_district" floatMode="ABOVE" minWidth="200.0" promptText="Bairro" />
-                            <MFXTextField fx:id="field_city" floatMode="ABOVE" minWidth="200.0" promptText="Cidade" />
-                            <MFXTextField fx:id="field_state" floatMode="ABOVE" minWidth="200.0" promptText="Estado" />
-                            <MFXTextField fx:id="field_cep" floatMode="ABOVE" minWidth="200.0" promptText="CEP" />
-                        </VBox>
-                    </content>
-                </TitledPane>
-                <TitledPane animated="false" text="Detalhes">
-                    <content>
-                        <VBox alignment="CENTER" spacing="8.0">
-                            <MFXTextField fx:id="field_name" floatMode="ABOVE" minWidth="200.0" promptText="Nome" />
-                            <MFXTextField fx:id="field_description" floatMode="ABOVE" minWidth="200.0" promptText="Descrição" />
-                            <MFXTextField fx:id="field_capacity" floatMode="ABOVE" minWidth="200.0" promptText="Capacidade" />
-                            <MFXTextField fx:id="field_price" floatMode="ABOVE" minWidth="200.0" promptText="Preço" />
-                            <MFXButton minWidth="200.0" onMouseClicked="#done" text="Confirmar" />
-                            <Label fx:id="error_label" style="-fx-text-fill: red" text="Todos os campos devem ser preenchidos!" />
-                        </VBox>
-                    </content>
-                </TitledPane>
-                <!--                  <TitledPane animated="false" text="Especificações">-->
-                <!--                      <content>-->
-                <!--                          <VBox alignment="CENTER" spacing="8.0">-->
-                <!--                              <VBox alignment="CENTER" fx:id="vbox_specifications"/>-->
-                <!--                          </VBox>-->
-                <!--                      </content>-->
-                <!--                  </TitledPane>-->
-            </panes>
-        </Accordion>
+    <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               AnchorPane.topAnchor="35.0" VBox.vgrow="ALWAYS">
+        <panes>
+            <TitledPane text="Endereço">
+                <VBox alignment="CENTER" spacing="8.0">
+                    <MFXTextField fx:id="field_street" floatMode="ABOVE" minWidth="200.0" promptText="Rua"/>
+                    <MFXTextField fx:id="field_number" floatMode="ABOVE" minWidth="200.0" promptText="Número"/>
+                    <MFXTextField fx:id="field_complement" floatMode="ABOVE" minWidth="200.0"
+                                  promptText="Complemento"/>
+                    <MFXTextField fx:id="field_district" floatMode="ABOVE" minWidth="200.0"
+                                  promptText="Bairro"/>
+                    <MFXTextField fx:id="field_city" floatMode="ABOVE" minWidth="200.0" promptText="Cidade"/>
+                    <MFXTextField fx:id="field_state" floatMode="ABOVE" minWidth="200.0" promptText="Estado"/>
+                    <MFXTextField fx:id="field_cep" floatMode="ABOVE" minWidth="200.0" promptText="CEP"/>
+                </VBox>
+            </TitledPane>
+            <TitledPane animated="false" text="Detalhes">
+                <VBox alignment="CENTER" spacing="8.0">
+                    <MFXTextField fx:id="field_name" floatMode="ABOVE" minWidth="200.0" promptText="Nome"/>
+                    <MFXTextField fx:id="field_description" floatMode="ABOVE" minWidth="200.0"
+                                  promptText="Descrição"/>
+                    <MFXTextField fx:id="field_capacity" floatMode="ABOVE" minWidth="200.0"
+                                  promptText="Capacidade"/>
+                    <MFXTextField fx:id="field_price" floatMode="ABOVE" minWidth="200.0" promptText="Preço"/>
+                </VBox>
+            </TitledPane>
+            <TitledPane animated="false" text="Especificações">
+                <VBox alignment="CENTER" spacing="8.0">
+                    <VBox alignment="CENTER" fx:id="vbox_specifications"/>
+                    <MFXButton minWidth="200.0" onMouseClicked="#done" text="Confirmar"/>
+                    <Label fx:id="error_label" style="-fx-text-fill: red"
+                           text="Todos os campos devem ser preenchidos!"/>
+                </VBox>
+            </TitledPane>
+        </panes>
+    </Accordion>
 
-        <HBox id="HBox" alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
-            <children>
-                <Label maxHeight="1.7976931348623157E308" text="\@PartyRent Alpha 1.0" HBox.hgrow="ALWAYS">
-                    <font>
-                        <Font size="11.0" fx:id="x3" />
-                    </font>
-                    <HBox.margin>
-                        <Insets bottom="8.0" left="16.0" />
-                    </HBox.margin>
-                </Label>
-                <Pane HBox.hgrow="ALWAYS" />
-            </children>
-            <padding>
-                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-            </padding>
-        </HBox>
+    <HBox id="HBox" alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+        <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+        </padding>
+        <Label maxHeight="1.7976931348623157E308" text="\@PartyRent Alpha 1.0" HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="11.0" fx:id="x3"/>
+            </font>
+            <HBox.margin>
+                <Insets bottom="8.0" left="16.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane HBox.hgrow="ALWAYS"/>
+    </HBox>
 
-    </children>
 </VBox>
