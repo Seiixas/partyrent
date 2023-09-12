@@ -2,6 +2,7 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.controllers.PlacesController;
 import br.ifnmg.edu.partyrent.modules.places.entities.Place;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.SpecificationComponent;
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.SessionManager;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
@@ -22,6 +23,8 @@ import java.util.ResourceBundle;
 public class PlaceViewController extends GenericController implements Initializable {
     @FXML
     public VBox vbox_root;
+    @FXML
+    private VBox vbox_specifications;
     @FXML
     private MFXButton button_delete;
     @FXML
@@ -81,5 +84,11 @@ public class PlaceViewController extends GenericController implements Initializa
         label_address.setText(label_address.getText().formatted(place.getAddress().toString()));
         label_capacity.setText(label_capacity.getText().formatted(place.getCapacity().toString()));
         label_price.setText(label_price.getText().formatted(place.getPrice().toString()));
+
+        place.getSpecifications().forEach(specification -> {
+            SpecificationComponent specificationComponent = new SpecificationComponent(specification);
+            specificationComponent.button_delete.visibleProperty().set(user.getOccupation().equals("admin"));
+            vbox_specifications.getChildren().add(specificationComponent);
+        });
     }
 }

@@ -4,6 +4,7 @@ import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.Res
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.ServiceComponent;
 import br.ifnmg.edu.partyrent.modules.rentals.controllers.ServicesController;
 import br.ifnmg.edu.partyrent.modules.rentals.entities.Service;
+import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.VBox;
@@ -38,6 +39,7 @@ public class ServicesManagerController extends GenericController implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        User user = (User) sessionManager.getObject("user");
         var servicesResponse = servicesController.findAll();
 
         ResponseValidator<List<Service>> validator = new ResponseValidator<>();
@@ -48,6 +50,8 @@ public class ServicesManagerController extends GenericController implements Init
 
         services.forEach(service -> {
             ServiceComponent serviceComponent = new ServiceComponent(service);
+            serviceComponent.button_delete.visibleProperty().set(user.getOccupation().equals("admin"));
+
             vbox_content.getChildren().add(serviceComponent);
 
             serviceComponent.button_delete.setOnMouseClicked(mouseEvent -> {
