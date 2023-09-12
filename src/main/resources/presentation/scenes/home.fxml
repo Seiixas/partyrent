@@ -47,7 +47,7 @@
                   <Insets bottom="8.0" />
                </HBox.margin>
             </MFXButton>
-                <MFXButton fx:id="button_manage_specifications" minWidth="200.0" text="Gerenciar especificações">
+                <MFXButton onMouseClicked="#manageSpecifications" fx:id="button_manage_specifications" minWidth="200.0" text="Gerenciar especificações">
                     <HBox.margin>
                         <Insets bottom="8.0" />
                     </HBox.margin>

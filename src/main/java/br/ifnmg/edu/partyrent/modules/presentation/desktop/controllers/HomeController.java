@@ -65,6 +65,11 @@ public class HomeController extends GenericController implements Initializable {
     }
 
     @FXML
+    private void manageSpecifications() {
+        loadScene(vbox_places, SpecificationsManagerController.class);
+    }
+
+    @FXML
     private void manageServices() {
         loadScene(vbox_places, ServicesManagerController.class);
     }
