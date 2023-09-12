@@ -94,7 +94,7 @@ public class PlaceViewController extends GenericController implements Initializa
 
         place.getSpecifications().forEach(specification -> {
             SpecificationComponent specificationComponent = new SpecificationComponent(specification);
-            specificationComponent.button_delete.visibleProperty().set(user.getOccupation().equals("admin"));
+            specificationComponent.button_delete.visibleProperty().set(false);
             vbox_specifications.getChildren().add(specificationComponent);
         });
 
