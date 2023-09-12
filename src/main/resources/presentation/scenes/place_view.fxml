@@ -87,7 +87,7 @@
                                                 <HBox layoutX="506.0" layoutY="9.0" spacing="8.0"
                                                       AnchorPane.rightAnchor="16.0">
                                                     <children>
-                                                        <MFXButton fx:id="button_delete" buttonType="RAISED"
+                                                        <MFXButton fx:id="button_delete"
                                                                    onAction="#delete" text="Apagar"/>
                                                         <MFXButton fx:id="button_rent" onAction="#rent" text="Alugar"/>
                                                     </children>
