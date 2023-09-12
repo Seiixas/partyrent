@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root type="HBox" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+    <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0" spacing="8.0" HBox.hgrow="ALWAYS">
+        <VBox alignment="CENTER_LEFT" AnchorPane.leftAnchor="0.0" HBox.hgrow="ALWAYS">
+            <Label fx:id="label_name" text="Título: %s">
+                <font>
+                    <Font size="16.0" />
+                </font></Label>
+            <Label fx:id="label_description" text="Descrição: %s">
+                <VBox.margin>
+                    <Insets top="8.0" />
+                </VBox.margin></Label>
+            <Label fx:id="label_price" text="Preço: %s">
+                <VBox.margin>
+                    <Insets top="4.0" />
+                </VBox.margin></Label>
+        </VBox>
+
+        <MFXButton fx:id="button_delete" text="Apagar" />
+      <padding>
+         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+      </padding>
+    </HBox>
+
+
+
+
+
+</fx:root>

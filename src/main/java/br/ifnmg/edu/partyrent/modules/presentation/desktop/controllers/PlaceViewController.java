@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import java.util.ResourceBundle;
 @Service
 @FxmlView("/presentation/scenes/place_view.fxml")
 public class PlaceViewController extends GenericController implements Initializable {
+    @FXML
+    public VBox vbox_root;
     @FXML
     private MFXButton button_delete;
     @FXML
