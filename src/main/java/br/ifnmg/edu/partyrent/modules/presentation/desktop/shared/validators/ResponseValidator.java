@@ -21,7 +21,7 @@ public class ResponseValidator<T> {
         return (T) responseEntity.getBody();
     }
 
-    public static void validateStore(ResponseEntity<Void> response, Runnable onSuccess) {
+    public static void validateStore(ResponseEntity response, Runnable onSuccess) {
         if (response.getStatusCode().is2xxSuccessful()) {
             Platform.runLater(() -> {
                 Alert alert = new Alert(

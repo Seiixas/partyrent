@@ -24,7 +24,7 @@ public class RentalsController {
             @RequestBody() @Valid() CreateRentalDTO createRentalDto,
             @RequestHeader (name="Authorization") String token
     ) {
-        String userEmail = this.authService.getSubject(token.substring(7, token.length()));
+        String userEmail = this.authService.getSubject(token);
         return ResponseEntity.status(HttpStatus.CREATED).body(this.rentalsService.create(createRentalDto, userEmail));
     }
 }
