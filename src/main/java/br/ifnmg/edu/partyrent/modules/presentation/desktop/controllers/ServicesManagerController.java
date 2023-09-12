@@ -31,6 +31,11 @@ public class ServicesManagerController extends GenericController implements Init
         loadScene(vbox_root, HomeController.class);
     }
 
+    @FXML
+    private void create() {
+        loadScene(vbox_root, ServiceCreateController.class);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         var servicesResponse = servicesController.findAll();

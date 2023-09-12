@@ -18,7 +18,7 @@
                 <VBox.margin>
                     <Insets top="8.0" />
                 </VBox.margin></Label>
-            <Label fx:id="label_price" text="Preço: %s">
+            <Label fx:id="label_price" text="Preço: R$%s">
                 <VBox.margin>
                     <Insets top="4.0" />
                 </VBox.margin></Label>

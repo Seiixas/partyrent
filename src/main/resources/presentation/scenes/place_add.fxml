@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/place_view.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.PlaceAddController">
+<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/place_add.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.PlaceAddController">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="20.0">
             <children>
