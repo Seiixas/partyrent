@@ -2,8 +2,10 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.controllers.PlacesController;
 import br.ifnmg.edu.partyrent.modules.places.entities.Place;
+//import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.RentalComponent;
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.SpecificationComponent;
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.SessionManager;
+//import br.ifnmg.edu.partyrent.modules.rentals.controllers.RentalsController;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;
@@ -21,8 +23,10 @@ import java.util.ResourceBundle;
 @Service
 @FxmlView("/presentation/scenes/place_view.fxml")
 public class PlaceViewController extends GenericController implements Initializable {
-    @FXML
-    public VBox vbox_root;
+//    @FXML
+//    private VBox vbox_root;
+//    @FXML
+//    private VBox vbox_rentals;
     @FXML
     private VBox vbox_specifications;
     @FXML
@@ -47,6 +51,9 @@ public class PlaceViewController extends GenericController implements Initializa
 
     @Autowired
     private PlacesController placesController;
+//
+//    @Autowired
+//    private RentalsController rentalsController;
 
     private Place place;
 
@@ -90,5 +97,10 @@ public class PlaceViewController extends GenericController implements Initializa
             specificationComponent.button_delete.visibleProperty().set(user.getOccupation().equals("admin"));
             vbox_specifications.getChildren().add(specificationComponent);
         });
+
+//        place.getRentals().forEach(rental -> {
+//            vbox_rentals.getChildren().add(new RentalComponent(rental));
+//            System.out.println(rental.getPlace().getAddress().toString());
+//        });
     }
 }

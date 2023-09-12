@@ -30,7 +30,7 @@ public class Place {
     @ManyToMany(mappedBy = "places", fetch = FetchType.EAGER)
     private Set<Specification> specifications;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Rental> rentals;
 
     public Address getAddress() {
