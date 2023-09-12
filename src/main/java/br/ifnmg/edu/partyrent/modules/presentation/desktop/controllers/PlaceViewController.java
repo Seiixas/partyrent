@@ -2,7 +2,7 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.controllers.PlacesController;
 import br.ifnmg.edu.partyrent.modules.places.entities.Place;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.SessionManager;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.SessionManager;
 import br.ifnmg.edu.partyrent.modules.users.entities.User;
 import io.github.palexdev.materialfx.controls.MFXButton;
 import javafx.fxml.FXML;

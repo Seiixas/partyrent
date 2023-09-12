@@ -1,4 +1,4 @@
-package br.ifnmg.edu.partyrent.modules.presentation.desktop;
+package br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

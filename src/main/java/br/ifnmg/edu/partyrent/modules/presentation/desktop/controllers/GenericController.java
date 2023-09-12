@@ -1,6 +1,6 @@
 package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.SessionManager;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.SessionManager;
 import io.github.palexdev.materialfx.css.themes.MFXThemeManager;
 import io.github.palexdev.materialfx.css.themes.Themes;
 import javafx.scene.Node;

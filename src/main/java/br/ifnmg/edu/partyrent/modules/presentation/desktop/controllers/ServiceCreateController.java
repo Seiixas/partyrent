@@ -1,8 +1,8 @@
 package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.BasicValidatorHelper;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ErrorHelper;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ResponseValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.BasicValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.Error;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.ResponseValidator;
 import br.ifnmg.edu.partyrent.modules.rentals.controllers.ServicesController;
 import br.ifnmg.edu.partyrent.modules.rentals.dtos.CreateServiceDTO;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -19,7 +19,6 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 @FxmlView("/presentation/scenes/service_create.fxml")
@@ -52,7 +51,7 @@ public class ServiceCreateController extends GenericController implements Initia
     private void done() {
         List<MFXTextField> fields = List.of(field_name, field_description, field_price);
 
-        if (BasicValidatorHelper.emptyFields(fields, label_error)) return;
+        if (BasicValidator.emptyFields(fields, label_error)) return;
 
         Thread thread = new Thread(() -> {
             try {
@@ -66,7 +65,7 @@ public class ServiceCreateController extends GenericController implements Initia
                 ResponseEntity<Void> response = servicesController.store(createServiceDTO);
                 ResponseValidator.validateStore(response, () -> loadScene(vbox_root, ServicesManagerController.class));
             } catch (Exception e) {
-                ErrorHelper.showError(e);
+                Error.showError(e);
             }
         });
 

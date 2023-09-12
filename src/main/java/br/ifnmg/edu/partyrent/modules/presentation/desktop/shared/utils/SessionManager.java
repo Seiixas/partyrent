@@ -1,4 +1,4 @@
-package br.ifnmg.edu.partyrent.modules.presentation.desktop;
+package br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils;
 
 import org.springframework.stereotype.Service;
 

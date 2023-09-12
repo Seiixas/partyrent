@@ -2,7 +2,7 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.controllers.SpecificationsController;
 import br.ifnmg.edu.partyrent.modules.places.entities.Specification;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ResponseValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.ResponseValidator;
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.SpecificationComponent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

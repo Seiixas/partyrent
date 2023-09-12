@@ -2,9 +2,9 @@ package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
 import br.ifnmg.edu.partyrent.modules.places.controllers.SpecificationsController;
 import br.ifnmg.edu.partyrent.modules.places.dtos.CreateSpecificationDTO;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.BasicValidatorHelper;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ErrorHelper;
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ResponseValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.BasicValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.utils.Error;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.ResponseValidator;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,7 +48,7 @@ public class SpecificationCreateController extends GenericController implements 
     private void done() {
         List<MFXTextField> fields = List.of(field_name, field_description);
 
-        if (BasicValidatorHelper.emptyFields(fields, label_error)) return;
+        if (BasicValidator.emptyFields(fields, label_error)) return;
 
         Thread thread = new Thread(() -> {
             try {
@@ -61,7 +61,7 @@ public class SpecificationCreateController extends GenericController implements 
                 ResponseEntity<Void> response = specificationsController.store(createSpecificationDTO);
                 ResponseValidator.validateStore(response, () -> loadScene(vbox_root, SpecificationsManagerController.class));
             } catch (Exception e) {
-                ErrorHelper.showError(e);
+                Error.showError(e);
             }
         });
 

@@ -1,6 +1,6 @@
 package br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers;
 
-import br.ifnmg.edu.partyrent.modules.presentation.desktop.ResponseValidator;
+import br.ifnmg.edu.partyrent.modules.presentation.desktop.shared.validators.ResponseValidator;
 import br.ifnmg.edu.partyrent.modules.presentation.desktop.components.ServiceComponent;
 import br.ifnmg.edu.partyrent.modules.rentals.controllers.ServicesController;
 import br.ifnmg.edu.partyrent.modules.rentals.entities.Service;
