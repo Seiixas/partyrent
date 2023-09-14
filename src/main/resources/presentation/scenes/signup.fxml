@@ -1,9 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            xmlns="http://javafx.com/javafx"
-            fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.SignupController"
-            prefHeight="400.0" prefWidth="600.0">
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.SignupController">
+    <left>
+        <VBox fx:id="vbox_signup" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="16.0"
+              BorderPane.alignment="CENTER">
+
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+
+            <children>
+                <Label text="Regisrar">
+                    <font>
+                        <Font name="Corbel" size="18.0"/>
+                    </font>
+                </Label>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0">
+                    <children>
+                        <MFXTextField fx:id="field_email" floatMode="ABOVE" minWidth="200.0" promptText="E-Mail"/>
+                        <MFXPasswordField fx:id="field_password" allowPaste="true" floatMode="ABOVE" minWidth="200.0"
+                                          promptText="Senha"/>
+                        <MFXPasswordField fx:id="field_password_confirm" allowPaste="true" floatMode="ABOVE"
+                                          minWidth="200.0" promptText="Confirmar senha"/>
+                    </children>
+                </VBox>
+            </children>
+
+            <BorderPane.margin>
+                <Insets/>
+            </BorderPane.margin>
+
+        </VBox>
+    </left>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0" BorderPane.alignment="CENTER">
+            <children>
+                <MFXTextField fx:id="field_name" floatMode="ABOVE" minWidth="200.0" promptText="Nome"/>
+                <MFXTextField fx:id="field_cpf" floatMode="ABOVE" minWidth="200.0" promptText="CPF"/>
+                <MFXTextField fx:id="field_rg" floatMode="ABOVE" minWidth="200.0" promptText="RG"/>
+                <MFXTextField fx:id="field_phone" floatMode="ABOVE" minWidth="200.0" promptText="Telefone"/>
+                <MFXDatePicker fx:id="datepicker_birthdate" promptText="Data de nascimento"/>
+            </children>
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+        </VBox>
+    </center>
+    <right>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="8.0"
+              BorderPane.alignment="CENTER">
+            <children>
+                <MFXTextField fx:id="field_street" floatMode="ABOVE" minWidth="200.0" promptText="Rua"/>
+                <MFXTextField fx:id="field_number" floatMode="ABOVE" minWidth="200.0" promptText="Número"/>
+                <MFXTextField fx:id="field_complement" floatMode="ABOVE" minWidth="200.0" promptText="Complemento"/>
+                <MFXTextField fx:id="field_district" floatMode="ABOVE" minWidth="200.0" promptText="Bairro"/>
+                <MFXTextField fx:id="field_city" floatMode="ABOVE" minWidth="200.0" promptText="Cidade"/>
+                <MFXTextField fx:id="field_state" floatMode="ABOVE" minWidth="200.0" promptText="Estado"/>
+                <MFXTextField fx:id="field_cep" floatMode="ABOVE" minWidth="200.0" promptText="CEP"/>
+                <MFXButton fx:id="button_signup" minHeight="35.0" minWidth="200.0" onMouseClicked="#signup"
+                           text="Registrar"/>
+                <MFXButton fx:id="button_cancel" minHeight="35.0" minWidth="200.0" onMouseClicked="#goBack"
+                           text="Cancelar"/>
+                <VBox spacing="4.0" alignment="CENTER" fx:id="vbox_errors">
+                    <children>
+
+                    </children>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="16.0" left="16.0" right="16.0" top="16.0"/>
+            </padding>
+        </VBox>
+    </right>
+</BorderPane>

@@ -26,8 +26,8 @@ public class LoginController extends GenericController {
     @FXML
     private MFXButton button_login;
 
-    @FXML
-    private MFXCheckbox checkbox_keep_connected;
+//    @FXML
+//    private MFXCheckbox checkbox_keep_connected;
 
     @FXML
     private MFXTextField field_email;
@@ -72,7 +72,9 @@ public class LoginController extends GenericController {
 
                 if (loginResponse.getBody() != null && loginResponseDTO != null) {
                     User user = usersController.findOne(loginResponseDTO.getUserId()).getBody();
+
                     sessionManager.setObject("user", user);
+                    sessionManager.setObject("login_response", loginResponseDTO);
 
                     Platform.runLater(() -> loadScene(vbox_login, HomeController.class));
                 }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0"
+      stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.PlaceViewController">
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <ImageView fx:id="image_back" fitHeight="26.0" fitWidth="92.0" onMouseClicked="#back" pickOnBounds="true"
+                   preserveRatio="true">
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
+            <HBox.margin>
+                <Insets bottom="5.0" left="10.0" top="5.0"/>
+            </HBox.margin>
+            <Image url="@../icons/back.png"/>
+        </ImageView>
+        <Label text="Dados da localização"/>
+    </HBox>
+    <ScrollPane fitToWidth="true" VBox.vgrow="SOMETIMES">
+        <VBox.margin>
+            <Insets bottom="5.0"/>
+        </VBox.margin>
+        <VBox alignment="CENTER">
+            <padding>
+                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+            </padding>
+            <GridPane VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="0.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" prefHeight="90.0" vgrow="SOMETIMES"/>
+                    <RowConstraints maxHeight="-Infinity" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES"/>
+                    <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <VBox prefHeight="200.0" prefWidth="568.0" spacing="8.0" GridPane.rowIndex="2">
+                    <Label fx:id="label_address" text="Endereço: %s">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="label_capacity" text="Capacidade: %s">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                    <Label fx:id="label_price" text="Preço: R$%s">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                </VBox>
+                <VBox spacing="8.0">
+                    <AnchorPane>
+                        <Label fx:id="label_title" layoutX="0.10546875" text="Title">
+                            <font>
+                                <Font size="36.0"/>
+                            </font>
+                        </Label>
+                        <HBox layoutX="506.0" layoutY="9.0" spacing="8.0"
+                              AnchorPane.rightAnchor="16.0">
+                            <MFXButton fx:id="button_delete" onAction="#delete" text="Apagar"/>
+                            <MFXButton fx:id="button_rent" onAction="#rent" text="Alugar"/>
+                        </HBox>
+                    </AnchorPane>
+                    <Label fx:id="label_description"
+                           text="Lorem ipsum dolor sit amet. Aut temporibus repellat aut accusamus voluptas est atque necessitatibus quo assumenda omnis aut distinctio consectetur qui pariatur labore. Est molestiae amet et internos labore est labore nesciunt? Est quis pariatur qui aperiam dolores est quos sapiente eum soluta Quis cum porro dolore quo facilis asperiores. "
+                           textAlignment="JUSTIFY" wrapText="true">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                        <VBox.margin>
+                            <Insets top="12.0"/>
+                        </VBox.margin>
+                    </Label>
+                </VBox>
+                <Accordion GridPane.rowIndex="4" GridPane.vgrow="NEVER">
+                    <panes>
+                        <TitledPane animated="false" text="Especificaçoes">
+                            <VBox fx:id="vbox_specifications"
+                            />
+                        </TitledPane>
+<!--                        <TitledPane animated="false" text="Histórico de locações">-->
+<!--                            <VBox fx:id="vbox_rentals"-->
+<!--                            />-->
+<!--                        </TitledPane>-->
+                    </panes>
+                </Accordion>
+            </GridPane>
+        </VBox>
+    </ScrollPane>
+    <HBox id="HBox" alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+        <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
+        </padding>
+        <Label maxHeight="1.7976931348623157E308" text="\@PartyRent Alpha 1.0" HBox.hgrow="ALWAYS">
+            <font>
+                <Font size="11.0" fx:id="x3"/>
+            </font>
+            <HBox.margin>
+                <Insets bottom="8.0" left="16.0"/>
+            </HBox.margin>
+        </Label>
+        <Pane HBox.hgrow="ALWAYS"/>
+    </HBox>
+</VBox>

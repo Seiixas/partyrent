@@ -1,3 +1,6 @@
+@import "colors.css" ;
+@import "default.css";
+
 .link {
 	-fx-underline: true;
 	-fx-cursor: hand;

@@ -1,0 +1,11 @@
+@import "colors.css";
+@import "default.css";
+
+.card {
+    -fx-background-color: -color-accent;
+    -fx-border-color: #72499B;
+}
+
+.card Label {
+    -fx-text-fill: white;
+}

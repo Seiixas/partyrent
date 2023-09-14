@@ -23,7 +23,7 @@ public class Service {
 
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "services")
+    @ManyToMany(mappedBy = "services", fetch = FetchType.EAGER)
     private Set<Rental> rentals;
 
     @CreationTimestamp

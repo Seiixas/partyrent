@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="vbox_root" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" stylesheets="@../css/default.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ifnmg.edu.partyrent.modules.presentation.desktop.controllers.ServicesManagerController">
+
+    <children>
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+                <ImageView fitHeight="26.0" fitWidth="92.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../icons/back.png" />
+                    </image>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                    <HBox.margin>
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Label text="Gerenciar serviços" />
+            </children>
+        </HBox>
+        <ScrollPane fitToWidth="true" VBox.vgrow="SOMETIMES">
+            <VBox.margin>
+                <Insets bottom="5.0" />
+            </VBox.margin>
+            <content>
+                <VBox fx:id="vbox_content" alignment="CENTER">
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <HBox id="HBox" alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+            <children>
+                <Label maxHeight="1.7976931348623157E308" text="\@PartyRent Alpha 1.0" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font size="11.0" fx:id="x3" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="16.0" />
+                    </HBox.margin>
+                </Label>
+                <Pane HBox.hgrow="ALWAYS" />
+                <MFXButton onMouseClicked="#create" text="Adicionar serviço">
+                    <HBox.margin>
+                        <Insets bottom="8.0" right="16.0" />
+                    </HBox.margin>
+                </MFXButton>
+            </children>
+            <padding>
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+        </HBox>
+    </children>
+</VBox>

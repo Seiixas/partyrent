@@ -27,10 +27,10 @@ public class Place {
 
     private BigDecimal price;
 
-    @ManyToMany(mappedBy = "places")
+    @ManyToMany(mappedBy = "places", fetch = FetchType.EAGER)
     private Set<Specification> specifications;
 
-    @OneToMany()
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Rental> rentals;
 
     public Address getAddress() {
@@ -41,7 +41,7 @@ public class Place {
         this.address = address;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 

@@ -21,7 +21,7 @@ public class Specification {
 
     private String description;
 
-    @ManyToMany()
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="places_specifications",
             joinColumns={@JoinColumn(name="specification_id")},
             inverseJoinColumns={@JoinColumn(name="place_id")})
